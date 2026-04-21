@@ -1,0 +1,193 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Remove side lines issue */
+html, body, #root {
+  width: 100%;
+  min-height: 100vh;
+  background: #000;
+  overflow-x: hidden;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* ================= BACKGROUND ================= */
+.form-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* YOUR IMAGE HERE */
+  background: url("../assets/bgg.jpg") no-repeat center center;
+  background-size: cover;
+}
+
+/* ================= CARD ================= */
+.form-card {
+  position: relative;
+  overflow: hidden;
+
+  background: #000;
+  padding: 30px;
+  border-radius: 20px;
+  width: 360px;
+  color: #fff;
+
+  box-shadow:
+    0 0 20px rgba(200, 0, 255, 0.6),
+    0 0 60px rgba(200, 0, 255, 0.3);
+}
+
+/* Animated neon border */
+.form-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 20px;
+  background: linear-gradient(120deg, transparent, #c84dff, transparent);
+  opacity: 0.7;
+  animation: borderMove 5s linear infinite;
+}
+
+.form-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #000;
+  border-radius: 20px;
+}
+
+/* Keep content above layers */
+.form-card * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Border animation */
+@keyframes borderMove {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Hover glow */
+.form-card:hover {
+  box-shadow:
+    0 0 30px rgba(200, 0, 255, 0.9),
+    0 0 80px rgba(200, 0, 255, 0.4);
+}
+
+.form-card h1 {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 8px;
+  color: #c84dff;
+  text-shadow: 0 0 10px #c84dff;
+}
+
+.form-card p {
+  text-align: center;
+  font-size: 13px;
+  color: #aaa;
+  margin-bottom: 20px;
+}
+
+.form-field {
+  margin-bottom: 15px;
+}
+
+/* Labels */
+.form-field label {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 5px;
+  color: #ddd;
+  transition: 0.3s;
+}
+
+/* Label hover glow */
+.form-field:hover label {
+  color: #c84dff;
+  text-shadow: 0 0 5px #c84dff;
+}
+
+/* Inputs */
+.form-field input,
+.form-field select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background: rgba(20, 20, 20, 0.95);
+  color: #fff;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.form-field input:hover,
+.form-field select:hover {
+  border-color: #c84dff;
+  box-shadow: 0 0 8px #c84dff;
+}
+
+/* Focus cyberpunk glow */
+.form-field input:focus,
+.form-field select:focus {
+  border-color: #ff00ff;
+  outline: none;
+  box-shadow:
+    0 0 5px #ff00ff,
+    0 0 15px #c84dff,
+    0 0 25px #7b00ff;
+  animation: glowPulse 1.5s infinite alternate;
+}
+
+/* Glow animation */
+@keyframes glowPulse {
+  from {
+    box-shadow: 0 0 5px #ff00ff;
+  }
+  to {
+    box-shadow: 0 0 20px #c84dff;
+  }
+}
+
+/* ================= BUTTON ================= */
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #7b00ff, #c84dff);
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* Neon sweep */
+.submit-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.4),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.submit-btn:hover::before {
+  left: 100%;
+}
