@@ -53,7 +53,7 @@ const TalentForm = () => {
     }
   };
 
-  return (
+  return ( 
     <div className="form-container">
       <div className="form-card">
         <h1>Talent Form for PUPBC</h1> {/* Changed H1 to h1 */}
