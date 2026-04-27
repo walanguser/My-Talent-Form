@@ -17,24 +17,40 @@ const TalentForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.talent) {
-      alert("Please select talent before Submitting!");
-      return;
+    try {
+      const response = await fetch("https://jimenezapi.azurewebsites.net/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        alert("Form is submitted successfully");
+        console.log("API Response:", result);
+
+        // Reset the form correctly
+        setFormData({
+          name: "",
+          age: "",
+          email: "",
+          talent: "" // Matches value="" in your <option>
+        });
+      } else {
+        // If the server returns a 400 or 500 error
+        const errorData = await response.json().catch(() => ({}));
+        alert("Failed to submit form. Server said: " + (errorData.message || response.statusText));
+      }
+    } catch (error) {
+      // This catches network errors (like the API being down or CORS issues)
+      alert("An error occurred. Check if the API is online.");
+      console.error("Submission error:", error);
     }
-
-    console.log("Form Submitted:", formData);
-    alert("Success!Thank you .");
-
-    // Resetting state (keys must match the initial state exactly)
-    setFormData({
-      name: "",
-      age: "",
-      email: "",
-      talent: "", 
-    });
   };
 
   return (
